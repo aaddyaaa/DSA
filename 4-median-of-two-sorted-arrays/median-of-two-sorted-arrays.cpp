@@ -21,7 +21,7 @@ public:
 
         if (maxLeftX <= minRightY && maxLeftY <= minRightX) {
             if ((x + y) % 2 == 0) {
-                return (max(maxLeftX, maxLeftY) + min(minRightX, minRightY)) / 2.0;
+                return (max(maxLeftX, maxLeftY) + min(minRightX,          minRightY)) / 2.0;
             } else {
                 return max(maxLeftX, maxLeftY);
             }
@@ -32,6 +32,7 @@ public:
         }
     }
     return -1.0;
+
         
     }
 };
