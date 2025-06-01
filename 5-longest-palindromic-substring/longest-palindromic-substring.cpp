@@ -1,13 +1,13 @@
 class Solution {
 public:
     string longestPalindrome(string s) {
-         int n = s.length();
+        int n = s.length();
         int low,high;
         int st=0 ; 
         int len=1;
         for(int i=1;i<n;i++){
-            low = i;
-            high = i-1;
+            low = i-1;
+            high = i;
             while(low>=0 && high<n && s[low]==s[high]){
                 
                 if(high-low+1 > len){
