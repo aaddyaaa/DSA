@@ -2,17 +2,40 @@ class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
         vector <int> ans;
+        int first = -1;
+        int last = -1;
         int n = nums.size();
-        int lb = lower_bound(nums.begin(),nums.end(),target)-nums.begin();
-        int ub = upper_bound(nums.begin(),nums.end(),target)-nums.begin();
-        if (lb == n || nums[lb]!=target){
-        ans.push_back(-1);
-        ans.push_back(-1);
+        int low = 0;
+        int high = n-1;
+        while (low<=high){
+            int mid = (low + high)/2;
+            if (nums[mid]==target){
+                first = mid;
+                high = mid - 1;
+            }
+            else if (nums[mid]<target){
+                low = mid + 1;
+            }
+
+            else high = mid - 1;
+        
         }
-        else{
-        ans.push_back(lb);
-        ans.push_back(ub-1);
+        low = 0;
+        high = n-1;
+        while (low<=high){
+            int mid = (low + high)/2;
+            if (nums[mid]==target){
+                last = mid;
+                low = mid + 1;
+            }
+            else if (nums[mid]<target){
+                low = mid + 1;
+            }
+
+            else high = mid - 1;
         }
+        ans.push_back(first);
+        ans.push_back(last);
 
         return ans;
     }
