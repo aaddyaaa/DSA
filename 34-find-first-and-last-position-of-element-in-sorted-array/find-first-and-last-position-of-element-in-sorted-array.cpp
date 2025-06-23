@@ -1,21 +1,19 @@
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
+        vector <int> ans;
         int n = nums.size();
-        int first = -1;
-        int last = -1;
-        for (int i=0;i<n;i++){
-            if(nums[i]==target){
-                if(first == -1){
-                    first = i;
-                }
-                last = i;
-            }
+        int lb = lower_bound(nums.begin(),nums.end(),target)-nums.begin();
+        int ub = upper_bound(nums.begin(),nums.end(),target)-nums.begin();
+        if (lb == n || nums[lb]!=target){
+        ans.push_back(-1);
+        ans.push_back(-1);
         }
-        vector<int> ans;
-        ans.push_back(first);
-        ans.push_back(last);
+        else{
+        ans.push_back(lb);
+        ans.push_back(ub-1);
+        }
+
         return ans;
-        
     }
 };
