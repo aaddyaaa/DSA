@@ -1,7 +1,6 @@
 class Solution {
 public:
     int index = 0;
-
     TreeNode* buildBST(vector<int>& preorder, int lower, int upper) {
         if (index >= preorder.size()) return nullptr;
 
@@ -15,7 +14,6 @@ public:
 
         return root;
     }
-
     TreeNode* bstFromPreorder(vector<int>& preorder) {
         return buildBST(preorder, INT_MIN, INT_MAX);
     }
