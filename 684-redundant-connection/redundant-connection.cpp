@@ -15,7 +15,7 @@ public:
 
     bool unite(int x, int y) {
         int px = find(x), py = find(y);
-        if (px == py) return false;
+        if (px == py) return false;// cycle hai
 
         if (rank[px] < rank[py]) {
             parent[px] = py;
@@ -25,7 +25,7 @@ public:
             parent[py] = px;
             rank[px]++;
         }
-        return true;
+        return true; // nhi hai unite krdo
     }
 };
 class Solution {
