@@ -1,37 +1,29 @@
 class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
-        unordered_set<string> wordSet(wordList.begin(), wordList.end());
-    
-    if (wordSet.find(endWord) == wordSet.end())
-        return 0;
+        unordered_set <string> wordset (wordList.begin(), wordList.end());
+        if (wordset.find(endWord)==wordset.end()) return 0;
+        queue <pair<string, int>> q;
+        q.push({beginWord,1});
+        while(!q.empty()){
+            string w = q.front().first;
+            int level = q.front(). second;
+            q.pop();
+            for (int i =0 ;i<w.size();i++)  {
+                char oc = w[i];
 
-    queue<pair<string, int>> q;
-    q.push({beginWord, 1});
+                for (char c = 'a'; c<= 'z';c++){
+                    w[i]= c;
+                    if (w==endWord) return level + 1;
+                    if (wordset.find(w)!=wordset.end()){
+                        q.push ({w, level+ 1});
+                        wordset.erase(w);
+                    }
 
-    while (!q.empty()) {
-        string word = q.front().first;
-        int level = q.front().second;
-        q.pop();
-
-        for (int i = 0; i < word.size(); ++i) {
-            char originalChar = word[i];
-
-            for (char c = 'a'; c <= 'z'; ++c) {
-                word[i] = c;
-                if (word == endWord)
-                    return level + 1;
-                if (wordSet.find(word) != wordSet.end()) {
-                    q.push({word, level + 1});
-                    wordSet.erase(word);
                 }
-            }
-
-            word[i] = originalChar;
+                w[i] = oc;
+            }    
         }
-    }
-
-    return 0;
-        
+        return 0;
     }
 };
