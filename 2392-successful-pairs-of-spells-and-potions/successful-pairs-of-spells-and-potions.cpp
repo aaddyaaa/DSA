@@ -4,13 +4,11 @@ public:
         sort(potions.begin(), potions.end());
         int m = potions.size();
         vector<int> ans;
-        
         for (int spell : spells) {
-            long long need = (success + spell - 1) / spell; 
+            long long need = ceil((double)success / spell); 
             int idx = lower_bound(potions.begin(), potions.end(), need) - potions.begin();
             ans.push_back(m - idx);
         }
         return ans;
-
     }
 };
