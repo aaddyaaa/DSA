@@ -5,7 +5,7 @@ public:
         for (char ch : s) {
             cnt[ch - 'a']++;
         }
-        for (int round = 0; round < t; ++round) {
+        for (int round = 0; round < t; round++) {
             vector<int> nxt(26);
             nxt[0] = cnt[25];
             nxt[1] = (cnt[25] + cnt[0]) % mod;
@@ -16,7 +16,7 @@ public:
         }
         int ans = 0;
         for (int i = 0; i < 26; ++i) {
-            ans = (ans + cnt[i]) % mod;
+            ans = (ans + cnt[i])% mod;
         }
         return ans;
     }
