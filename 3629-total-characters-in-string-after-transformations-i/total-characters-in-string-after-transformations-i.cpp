@@ -3,7 +3,7 @@ public:
     int lengthAfterTransformations(string s, int t) {
         vector<int> cnt(26);
         for (char ch : s) {
-            ++cnt[ch - 'a'];
+            cnt[ch - 'a']++;
         }
         for (int round = 0; round < t; ++round) {
             vector<int> nxt(26);
