@@ -8,6 +8,7 @@ public:
                 return false;
             }
             maxr= max(maxr,i+nums[i]);
+            if (maxr==n-1) return true;
         }
         return true;
     }
