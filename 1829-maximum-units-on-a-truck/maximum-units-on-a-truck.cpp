@@ -15,7 +15,7 @@ public:
                 truckSize-=boxes;
             }
             else {
-                tv+= truckSize * units;
+                tv+= truckSize * units; // left no of boxes that truck can intake and multiplying it with value of that particular element in array jaha pr else aaya
                 break;
             }
         }
