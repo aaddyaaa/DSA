@@ -1,32 +1,16 @@
 class Solution {
 public:
 
-    bool canfinish(long long T, int mountainHeight, vector<int>& workerTimes){
+    bool canfinish(long long T, int mountainHeight, vector<int>& workerTimes) {
         long long totalHeight = 0;
 
-        for(int t : workerTimes){
-            
-            long long low = 0;
-            long long high = mountainHeight;
-            long long best = 0;
+        for (int t : workerTimes) {
 
-            while(low <= high){
-                long long mid = (low + high) / 2;
+            long long x = (-1 + sqrt(1 + (8.0 * T) / t)) / 2;
 
-                long long timeNeeded = (long long)t * (mid * (mid + 1) / 2);
+            totalHeight += x;
 
-                if(timeNeeded <= T){
-                    best = mid;
-                    low = mid + 1;
-                }
-                else{
-                    high = mid - 1;
-                }
-            }
-
-            totalHeight += best;
-
-            if(totalHeight >= mountainHeight)
+            if (totalHeight >= mountainHeight)
                 return true;
         }
 
@@ -36,19 +20,21 @@ public:
     long long minNumberOfSeconds(int mountainHeight, vector<int>& workerTimes) {
 
         long long low = 0;
-        long long high = (long long)*max_element(workerTimes.begin(), workerTimes.end()) * mountainHeight * (mountainHeight + 1) / 2;
+
+        long long maxTime = *max_element(workerTimes.begin(), workerTimes.end());
+        long long high = maxTime * 1LL * mountainHeight * (mountainHeight + 1) / 2;
 
         long long answer = high;
 
-        while(low <= high){
+        while (low <= high) {
 
             long long mid = (low + high) / 2;
 
-            if(canfinish(mid, mountainHeight, workerTimes)){
+            if (canfinish(mid, mountainHeight, workerTimes)) {
                 answer = mid;
                 high = mid - 1;
             }
-            else{
+            else {
                 low = mid + 1;
             }
         }
