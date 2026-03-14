@@ -21,7 +21,7 @@ public:
 
         long long low = 0;
 
-        long long maxTime = *max_element(workerTimes.begin(), workerTimes.end());
+        long long maxTime = *min_element(workerTimes.begin(), workerTimes.end());
         long long high = maxTime * 1LL * mountainHeight * (mountainHeight + 1) / 2;
 
         long long answer = high;
