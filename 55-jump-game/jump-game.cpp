@@ -6,8 +6,7 @@ public:
         for (int i = 0 ; i< n ; i++){
             if(i>pos)return false; // the pos is where we can reach max but if we're at i we cant reach then return false;
             pos = max(pos,i+nums[i]);
-            if (pos >= n-1) return true;
         }
-        return false;
+        return true;
     }
 };
