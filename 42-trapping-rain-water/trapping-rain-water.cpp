@@ -7,7 +7,7 @@ public:
         int rightmax = 0;
         int water = 0;
         while (l<r){
-            if (height[l]<height[r]){
+            if (height[l]<=height[r]){
                 if(height[l]>=leftmax){
                     leftmax = height[l];
                 }
@@ -15,7 +15,7 @@ public:
                 l++;
             }
             else {
-                if(height[r]>=rightmax){
+                if(height[r]>rightmax){
                     rightmax = height[r];
                 }
                 else water+= rightmax - height[r];
