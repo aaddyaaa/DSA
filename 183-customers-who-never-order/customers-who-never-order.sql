@@ -3,4 +3,4 @@ select c.name as customers
 from customers as c
 left join orders as o
 on c.id = o.customerId
-where o.customerId IS NULL;
+where o.id IS NULL;
