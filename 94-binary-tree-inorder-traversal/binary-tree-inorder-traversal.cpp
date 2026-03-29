@@ -11,14 +11,15 @@
  */
 class Solution {
 public:
+    void inorder(TreeNode* root, vector<int>& v){
+        if (root == NULL) return;
+        inorder(root->left, v);
+        v.push_back(root->val);
+        inorder(root->right, v);
+    }
     vector<int> inorderTraversal(TreeNode* root) {
-        vector <int> result;
-        if (root == NULL) return result;
-        vector <int> left = inorderTraversal(root->left);
-        vector <int> right = inorderTraversal(root->right);
-        result.insert(result.end(),left.begin(),left.end());
-        result.push_back(root->val);
-        result.insert(result.end(),right.begin(),right.end());
-        return result;
+        vector <int> v;
+        inorder(root, v);
+        return v;
     }
 };
