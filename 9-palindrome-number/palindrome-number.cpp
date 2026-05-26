@@ -4,11 +4,12 @@ public:
         long long result = 0;
         if (x<0) return false;
         int original = x;
-        while(x!=0){
-            int digits = x%10;
+        while (x!=0){
+            int digit = x% 10 ;
             x = x/10;
-            result = result*10 + digits;
+            result = result * 10 + digit;
         }
-        return (original==result);
+        if (result == original) return true;
+        else return false;
     }
 };
