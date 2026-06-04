@@ -1,15 +1,8 @@
 # Write your MySQL query statement below
-select employee_id, department_id 
-from employee
-where employee_id in (
-    SELECT employee_id
+select t.employee_id, t.department_id 
+from (
+    select *, count(*) over (partition by employee_id) as count_dept
     from employee
-    group by employee_id
-    having count(department_id) = 1
-) OR employee_id in (
-    SELECT employee_id
-    from employee
-    group by employee_id
-    having count(department_id) > 1 and primary_flag = 'Y'
-)
-order by employee_id 
+) as t
+where t.primary_flag = 'Y' or t.count_dept = 1
+order by t.employee_id
