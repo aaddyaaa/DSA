@@ -1,26 +1,30 @@
-WITH cte AS (
-    SELECT
+with cte as (
+    select
         visited_on,
-        SUM(amount) AS amount
-    FROM Customer
-    GROUP BY visited_on
+        sum(amount) as amount
+    from customer
+    group by visited_on
 ),
-cte2 AS (
-    SELECT
+cte2 as (
+    select
         visited_on,
-        SUM(amount) OVER (
-            ORDER BY visited_on
-            ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
-        ) AS amount,
-        ROW_NUMBER() OVER (
-            ORDER BY visited_on
-        ) AS rn
-    FROM cte
+        sum(amount) over (
+            order by visited_on
+            rows between 6 preceding and current row
+        ) as amount,
+        avg(amount) over (
+            order by visited_on
+            rows between 6 preceding and current row
+        ) as average_amount,
+        row_number() over (
+            order by visited_on
+        ) as rn
+    from cte
 )
 
-SELECT
+select
     visited_on,
     amount,
-    ROUND(amount / 7, 2) AS average_amount
-FROM cte2
-WHERE rn >= 7;
+    round(average_amount, 2) as average_amount
+from cte2
+where rn >= 7;
